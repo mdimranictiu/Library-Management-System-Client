@@ -72,7 +72,7 @@ const from = location.state || '/';
               <label className="input-group">
                 <input
                   type="email"
-                  placeholder="Enter Your Email"
+                  placeholder="Enter Your Email" required
                   name="email"
                   className="input  focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] input-bordered w-full"
                 />
@@ -87,7 +87,7 @@ const from = location.state || '/';
               <label className="input-group">
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="Password" required
                   name="password"
                   className="input  focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] w-full input-bordered"
                 />

@@ -11,6 +11,7 @@ import Register from "./components/Register/Register";
 import AuthProvider from "./context/AuthProvider";
 import AllBooks from "./components/AllBooks/AllBooks";
 import PrivateRouter from "./Router/PrivateRouter/PrivateRouter";
+import AddBook from "./components/AddBook/AddBook";
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path : "/books",
         element: <PrivateRouter><AllBooks></AllBooks></PrivateRouter>
+      },
+      {
+        path : "/add-book",
+        element: <PrivateRouter><AddBook></AddBook></PrivateRouter>
       }
       
     ],
