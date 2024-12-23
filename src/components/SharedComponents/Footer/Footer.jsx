@@ -41,9 +41,9 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className='grid grid-cols-2 gap-10 items-center max-md:grid-cols-1 max-sm:grid-cols-1'>
+                    <div className='gap-10 items-center grid grid-cols-2 max-md:grid-cols-1 max-sm:grid-cols-1'>
                         <div className='flex items-center'>
-                            <ul className='flex flex-row gap-5 text-3xl cursor-pointer'>
+                            <ul className='flex lg:flex-row max-sm:flex-row md:flex-col gap-3 text-3xl cursor-pointer'>
                                 <li className='p-3 rounded-full text-white  hover:bg-white hover:text-[#008575] transition-all'>
                                     <FaFacebook />
                                 </li>
