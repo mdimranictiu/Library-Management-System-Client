@@ -1,14 +1,67 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+
+const {loginUser,signInwithGoogle}=useContext(AuthContext)
+const navigate= useNavigate()
+const location =useLocation();
+const from = location.state || '/';
+
+  const handleLogin=(event)=>{
+    event.preventDefault();
+    const form=event.target;
+    const email= form.email.value;
+    const password=form.password.value;
+
+    loginUser(email,password)
+    .then((userCredential)=>{
+      const user=userCredential.user;
+      form.reset()
+       navigate(from)
+    })
+    .catch((error)=>{
+      Swal.fire({
+              icon: "error",
+              title: "Login Failed",
+              text: `${error.message}`,
+              confirmButtonText: 'Try Again',
+      
+            });
+    })
+
+  }
+
+   const handleGoogleSignIn=()=>{
+     signInwithGoogle()
+     .then((data)=>{
+       const user=data.user;
+       console.log(user)
+      navigate(from)
+     })
+     .catch((error)=>{
+       Swal.fire({
+         icon: "error",
+         title: "Login Failed",
+         text: `${error.message}`,
+         confirmButtonText: 'Try Again',
+ 
+       });
+     })
+   
+   }
+ 
+
+
   return (
     <div className="my-10">
       <h2 className="text-3xl py-5 font-bold text-center text-[#008575]">
         Log In
       </h2>
       <div className="p-5 w-full sm:w-full md:w-full lg:w-2/5 border border-gray-300 mx-auto">
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="grid p-10 gap-5  max-md:w-full max-sm:w-full mx-auto w-4/5">
             <div className="form-control ">
               <label className="label">
@@ -61,7 +114,7 @@ const Login = () => {
         </form>
      <div className="flex flex-col gap-5">
      <label className="input-group">
-          <button className="justify-center gap-2 w-full input input-bordered font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]">
+          <button onClick={handleGoogleSignIn} className="justify-center gap-2 w-full input input-bordered font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]">
             Continue with Google
           </button>
         </label>

@@ -9,7 +9,7 @@ const Root = () => {
         <>
         <div>
         <NavBar></NavBar>
-        <div className='w-4/5 mx-auto'>
+        <div className='w-4/5 my-5 mx-auto'>
         <Outlet></Outlet>
         </div>
         <Footer></Footer>

@@ -8,6 +8,9 @@ import Error from "./components/Error/Error";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import AuthProvider from "./context/AuthProvider";
+import AllBooks from "./components/AllBooks/AllBooks";
+import PrivateRouter from "./Router/PrivateRouter/PrivateRouter";
 
 
 
@@ -29,6 +32,10 @@ const router = createBrowserRouter([
       {
         path : "/register",
         element: <Register></Register>
+      },
+      {
+        path : "/books",
+        element: <PrivateRouter><AllBooks></AllBooks></PrivateRouter>
       }
       
     ],
@@ -37,6 +44,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider><RouterProvider router={router} /></AuthProvider>
+    
   </StrictMode>
 );

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiCrossedSabres } from "react-icons/gi";
 import { IoIosMenu } from "react-icons/io";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const NavBar = () => {
-  const user =false;
+  const {user,logOut}= useContext(AuthContext)
+  console.log(user?.email, user?.displayName)
   const [isHovered, setIsHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -13,11 +15,12 @@ const NavBar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      {user && (
-        <>
-          <li>
+      <li>
             <Link to="/books">All Books</Link>
           </li>
+      {user && (
+        <>
+         
           <li>
             <Link to="/add-book">Add Book</Link>
           </li>
@@ -29,32 +32,41 @@ const NavBar = () => {
     </>
   );
 
+  const handleSignOut=()=>{
+    logOut()
+    .then(()=>{
+      console.log('Sign out successfully')
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   const registerSection = (
     <>
       {user ? (
         <div className="flex items-center max-sm:items-start gap-6 max-sm:flex-col">
-          <button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="w-12 h-12 rounded-full overflow-hidden border border-gray-300 hover:ring-2 hover:ring-blue-500 transition duration-300 relative"
-          >
-            <img
-              src={user.photoURL}
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-            {isHovered && (
-              <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 shadow-lg">
-                {user.displayName || "User"}
-              </div>
-            )}
+     
+     <button onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)} className="w-12 h-12 rounded-full overflow-hidden border border-gray-300 hover:ring-2 hover:ring-blue-500 transition duration-300">
+        <img
+          src={user.photoURL}
+          alt="Profile"
+          className="w-full h-full object-cover"
+        />
+         {isHovered && (
+            <div className="absolute top-[70px] max-sm:top-[250px] max-sm:right-[250px] right-[100px]  transform  bg-[#11ada0] text-white text-xs rounded px-5 py-2 shadow-lg">
+              {user.displayName || "User"}
+            </div>
+          )}
+
           </button>
-          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
+          <button onClick={handleSignOut} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
             Log out
           </button>
         </div>
       ) : (
-        <div className="flex gap-4 max-sm:flex-col">
+        <div className="flex gap-4 max-sm:gap-12">
          <button className="px-4 py-2 bg-[#008575] text-white  hover:bg-white hover:text-[#008575] rounded transition duration-300"> <Link to="/login" className="px-4 py-2 rounded">
             Login
           </Link></button>
@@ -81,10 +93,10 @@ const NavBar = () => {
           <IoIosMenu />
           </div>
         </div>
-        <a className="btn btn-ghost text-xl">My Logo</a>
+        <a className="btn btn-ghost text-xl">Library MS </a>
       </div>
       <div
-        className={`fixed top-[60px] left-0 py-10 z-40 w-full bg-base-100 shadow-lg transform transition-transform duration-300 ${
+        className={`fixed top-[60px] left-0 py-10 z-40 w-full  bg-[white] shadow-lg transform transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
