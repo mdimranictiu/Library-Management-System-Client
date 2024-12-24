@@ -12,6 +12,7 @@ import AuthProvider from "./context/AuthProvider";
 import AllBooks from "./components/AllBooks/AllBooks";
 import PrivateRouter from "./Router/PrivateRouter/PrivateRouter";
 import AddBook from "./components/AddBook/AddBook";
+import UpdateBook from "./components/UpdateBook/UpdateBook";
 
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path : "/add-book",
         element: <PrivateRouter><AddBook></AddBook></PrivateRouter>
+      },
+      {
+        path : "/UpdateBook",
+        element: <PrivateRouter><UpdateBook></UpdateBook></PrivateRouter>
       }
       
     ],

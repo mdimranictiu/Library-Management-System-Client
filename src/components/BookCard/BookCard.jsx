@@ -1,15 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BookCard = ({book}) => {
+    const navigate=useNavigate()
     const {
    name,
    bookImageUrl,
    authorName,
    category,
    rating,
+   _id
 
     }=book
+
+   
+      
+      
     return (
         <div className="card card-compact bg-[#eff1ed] shadow-2xl  flex flex-col justify-between">
             <div className="card-body flex-grow">
@@ -23,7 +29,7 @@ const BookCard = ({book}) => {
                 <h3 className="font-semibold text-[16px] mt-2">Category:: {category}</h3>
                 <h3 className="font-semibold text-[16px] mt-2">Rating: {rating} /5</h3>
                 <div className='py-5 '>
-                <Link ><button className='text-[16px] w-[200px] font-semibold input input-bordered  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]'>Update</button></Link>
+                <Link to='/UpdateBook' state={_id} ><button  className='text-[16px] w-[200px] font-semibold input input-bordered  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]'>Update</button></Link>
                 </div>
                 </div>
             </div>
