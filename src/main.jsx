@@ -14,6 +14,7 @@ import PrivateRouter from "./Router/PrivateRouter/PrivateRouter";
 import AddBook from "./components/AddBook/AddBook";
 import UpdateBook from "./components/UpdateBook/UpdateBook";
 import Category from "./components/Category/Category";
+import ViewDetails from "./components/ViewDetails/ViewDetails";
 
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path:"/category",
         element: <PrivateRouter><Category></Category></PrivateRouter>
+      },
+      {
+        path:"/ViewDetails",
+        element: <PrivateRouter><ViewDetails></ViewDetails></PrivateRouter>
       }
       
     ],
