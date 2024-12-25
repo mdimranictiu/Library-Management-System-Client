@@ -26,8 +26,8 @@ const BookCard = ({book}) => {
                 <div className='flex flex-col items-center'>
                 <h2 className="card-title mt-2 text-[#008575]">Book Name: {name}</h2>
                 <h3 className="font-semibold text-[16px] mt-2">Author Name: {authorName}</h3>
-                <h3 className="font-semibold text-[16px] mt-2">Category:: {category}</h3>
-                <h3 className="font-semibold text-[16px] mt-2">Rating: {rating} /5</h3>
+                <h3 className="font-semibold text-[16px] mt-2">Category: {category}</h3>
+                <h3 className="font-semibold text-[16px] mt-2">Rating: {rating} / 5</h3>
                 <div className='py-5 '>
                 <Link to='/UpdateBook' state={_id} ><button  className='text-[16px] w-[200px] font-semibold input input-bordered  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]'>Update</button></Link>
                 </div>
