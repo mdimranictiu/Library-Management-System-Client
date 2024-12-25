@@ -8,19 +8,20 @@ const AllBooks = () => {
     const timeoutRef=useRef(null)
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
-            setIsloading(false); 
-          }, 2000);
+          axios.get('http://localhost:3000/books')
+          .then((res)=>{
+              const result=res.data;
+              setBooks(result)
+              setIsloading(false)
+              
+          })
+          .catch((error)=>{
+              console.log(error)
+              setIsloading(false)
+          })
+          }, 1000);
     
-        axios.get('http://localhost:3000/books')
-        .then((res)=>{
-            const result=res.data;
-            setBooks(result)
-            
-        })
-        .catch((error)=>{
-            console.log(error)
-            setIsloading(false)
-        })
+      
 
 
 

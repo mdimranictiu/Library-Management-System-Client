@@ -8,29 +8,35 @@ const UpdateBook = () => {
     const id=location?.state;
     const [book,setBook]=useState([]);
     const [isloading,setIsloading]=useState(true);
+    const [isupdating,setisupdating]=useState(false)
     const timeoutRef=useRef(null)
+    const categories = ["Novel", "Thriller", "History", "Drama", "Sci-Fi","Fiction"];
+  const [ratingError,setratingError]=useState("")
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
-            setIsloading(false); 
-          }, 1000);
+
+          axios.get(`http://localhost:3000/book/${id}`)
+          .then((res)=>{
+              const result=res.data;
+              setBook(result)
+              setIsloading(false)
+              
+          })
+          .catch((error)=>{
+              console.log(error)
+              setIsloading(false)
+          })
+        }, 1000);
     
-        axios.get(`http://localhost:3000/book/${id}`)
-        .then((res)=>{
-            const result=res.data;
-            setBook(result)
-            
-        })
-        .catch((error)=>{
-            console.log(error)
-            setIsloading(false)
-        })
+        return () => clearTimeout(timeoutRef.current);
+
 
     }
+    
     ,[])
     const {name,bookImageUrl,authorName,category,rating}=book
     console.log(book)
-    const categories = ["Novel", "Thriller", "History", "Drama", "Sci-Fi","Fiction"];
-  const [ratingError,setratingError]=useState("")
+    
 
   const handleUpdateBook = (event) => {
     event.preventDefault();
@@ -53,6 +59,7 @@ const UpdateBook = () => {
       category,
       rating,
     };
+    setisupdating(true);
     axios
       .patch(`http://localhost:3000/book/${id}`, UpdateBook)
       .then((res) => {
@@ -60,10 +67,10 @@ const UpdateBook = () => {
         Swal.fire({
           title: "Book Update Successfully",
           showConfirmButton: false,
-          timer: 3000,
+          timer: 2000,
           icon: "success"
         });
-        form.reset();
+        setisupdating(false)
       })
       .catch((error) => {
         Swal.fire({
@@ -74,13 +81,45 @@ const UpdateBook = () => {
         });
       });
   };
+  if(isloading){
+    return(
+      <div className="items-center text-center py-16">
+<span className="loading loading-lg loading-ring text-primary"></span>
+<span className="loading loading-lg loading-ring text-secondary"></span>
+<span className="loading loading-lg loading-ring text-accent"></span>
+<span className="loading loading-lg loading-ring text-neutral"></span>
+<span className="loading loading-lg loading-ring text-info"></span>
+<span className="loading loading-lg loading-ring text-success"></span>
+<span className="loading loading-lg loading-ring text-warning"></span>
+<span className="loading loading-lg loading-ring text-error"></span>
+</div>
+    )
+  }
 
     return (
-        <div className="py-10">
+        <div className="py-10 min-h-screen">
       <h2 className="text-3xl py-10  text-center font-bold text-[#008575]">
         Update Book
       </h2>
-      <div className="w-4/5 max-sm:w-full mx-auto p-10 rounded-xl shadow-2xl">
+        {isupdating && 
+        
+        (
+          <div className="items-center text-center py-16">
+          <span className="loading loading-lg loading-ring text-primary"></span>
+          <span className="loading loading-lg loading-ring text-secondary"></span>
+          <span className="loading loading-lg loading-ring text-accent"></span>
+          <span className="loading loading-lg loading-ring text-neutral"></span>
+          <span className="loading loading-lg loading-ring text-info"></span>
+          <span className="loading loading-lg loading-ring text-success"></span>
+          <span className="loading loading-lg loading-ring text-warning"></span>
+          <span className="loading loading-lg loading-ring text-error"></span>
+          </div>
+        )
+        
+        }  
+          
+          
+          <div className="w-4/5 max-sm:w-full mx-auto p-10 rounded-xl shadow-2xl">
         <form
           onSubmit={handleUpdateBook}
           className=" max-sm:w-full max-md:w-full  rounded-xl  border border-gray-300 mx-auto"
@@ -165,7 +204,8 @@ const UpdateBook = () => {
               </label>
               <label className="input-group">
                 <input
-                  type="number"
+                  type="number"   step="0.01"
+
                   placeholder="Rating(1-5)"
                   required
                   name="rating" defaultValue={rating}

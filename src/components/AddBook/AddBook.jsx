@@ -175,7 +175,8 @@ const AddBook = () => {
                   type="number"
                   placeholder="Rating(1-5)"
                   required
-                  name="rating"
+                  name="rating"   step="0.01"
+
                   className="input focus:ring-1 focus:outline-none focus:ring-[#008575]   text-[18px] input-bordered w-4/5 max-md:w-full mx-auto max-sm:w-full"
                 />
               </label>
