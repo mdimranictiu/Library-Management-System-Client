@@ -13,6 +13,7 @@ import AllBooks from "./components/AllBooks/AllBooks";
 import PrivateRouter from "./Router/PrivateRouter/PrivateRouter";
 import AddBook from "./components/AddBook/AddBook";
 import UpdateBook from "./components/UpdateBook/UpdateBook";
+import Category from "./components/Category/Category";
 
 
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path : "/UpdateBook",
         element: <PrivateRouter><UpdateBook></UpdateBook></PrivateRouter>
+      },
+      {
+        path:"/category",
+        element: <PrivateRouter><Category></Category></PrivateRouter>
       }
       
     ],
