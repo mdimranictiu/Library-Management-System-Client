@@ -11,13 +11,12 @@ const BorrowedBooks = () => {
   document.title='Borrowed Books';
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/borrowed-books?email=${email}`)
+    axios.get(`https://library-management-system-server-ten.vercel.app/borrowed-books?email=${email}`)
       .then((res) => {
         setBooks(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
         setIsLoading(false);
       });
   }, [email]);

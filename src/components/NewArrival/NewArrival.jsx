@@ -9,7 +9,7 @@ const NewArrival = () => {
     const [newbook,setnewbook]=useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/latestbooks`)
+        axios.get(`https://library-management-system-server-ten.vercel.app/latestbooks`)
           .then((res) => {
             const result=res.data
             setnewbook(result);

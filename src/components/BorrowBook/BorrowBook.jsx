@@ -18,7 +18,7 @@ const BorrowBook = ({ book, books, setBooks }) => {
 
   // get book info
   axios
-    .get(`http://localhost:3000/book/${bookid}`)
+    .get(`https://library-management-system-server-ten.vercel.app/book/${bookid}`)
     .then((res) => {
       const result = res.data;
       setOldBook(result);
@@ -41,7 +41,7 @@ const BorrowBook = ({ book, books, setBooks }) => {
       if (result.isConfirmed) {
         axios
           .delete(
-            `http://localhost:3000/borrowed-books/delete/${borrowedBookId}`
+            `https://library-management-system-server-ten.vercel.app/borrowed-books/delete/${borrowedBookId}`
           )
           .then((response) => {
             if (response.data.deletedCount > 0) {
@@ -64,7 +64,7 @@ const BorrowBook = ({ book, books, setBooks }) => {
           quantity: oldbook.quantity + 1,
         };
         axios
-          .patch(`http://localhost:3000/book/${bookid}`, updateQuantity)
+          .patch(`https://library-management-system-server-ten.vercel.app/book/${bookid}`, updateQuantity)
           .then((res) => {
             console.log(res.data);
           })

@@ -20,7 +20,7 @@ const UpdateBook = () => {
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
 
-          axios.get(`http://localhost:3000/book/${id}`)
+          axios.get(`https://library-management-system-server-ten.vercel.app/book/${id}`)
           .then((res)=>{
               const result=res.data;
               setBook(result)
@@ -66,7 +66,7 @@ const UpdateBook = () => {
     };
     setisupdating(true);
     axios
-      .patch(`http://localhost:3000/book/${id}`, UpdateBook)
+      .patch(`https://library-management-system-server-ten.vercel.app/book/${id}`, UpdateBook)
       .then((res) => {
         console.log(res.data)
         Swal.fire({

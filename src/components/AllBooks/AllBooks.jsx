@@ -9,7 +9,7 @@ const AllBooks = () => {
     document.title="All Books";
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
-          axios.get('http://localhost:3000/books')
+          axios.get('https://library-management-system-server-ten.vercel.app/books')
           .then((res)=>{
               const result=res.data;
               setBooks(result)

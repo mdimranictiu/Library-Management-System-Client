@@ -25,7 +25,7 @@ const ViewDetails = () => {
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
-      axios.get(`http://localhost:3000/book/${id}`)
+      axios.get(`https://library-management-system-server-ten.vercel.app/book/${id}`)
         .then((res) => {
           const result = res.data;
           setBook(result);
@@ -57,7 +57,7 @@ const ViewDetails = () => {
         quantity:book.quantity-1,
       }
       axios
-      .patch(`http://localhost:3000/book/${id}`, updateQuantity)
+      .patch(`https://library-management-system-server-ten.vercel.app/book/${id}`, updateQuantity)
       .then((res) => {
         console.log(res.data)
         Swal.fire({
@@ -94,7 +94,7 @@ const ViewDetails = () => {
       returnDate
     }
     axios
-    .post('http://localhost:3000/addBorrowBook',addBookBorrow)
+    .post('https://library-management-system-server-ten.vercel.app/addBorrowBook',addBookBorrow)
     .then((res)=>{
      const data=res.data;
      console.log(data)

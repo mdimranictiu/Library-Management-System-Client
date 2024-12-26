@@ -12,7 +12,7 @@ const Category = () => {
     const timeoutRef=useRef(null)
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
-          axios.get(`http://localhost:3000/books/category?category=${category}`)
+          axios.get(`https://library-management-system-server-ten.vercel.app/books/category?category=${category}`)
           .then((res)=>{
               const result=res.data;
               setBooks(result)
