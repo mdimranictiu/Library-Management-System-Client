@@ -119,11 +119,11 @@ document.title="login"
             Continue with Google
           </button>
         </label>
-        <label className="input-group">
+        {/* <label className="input-group">
           <button className="justify-center gap-2 w-full input input-bordered font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]">
             Continue with Github
           </button>
-        </label>
+        </label> */}
      </div>
       </div>
     </div>
