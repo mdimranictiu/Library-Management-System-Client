@@ -48,14 +48,11 @@ const ViewDetails = () => {
         ...prevBook,
         quantity: prevBook.quantity - 1, // Decrease quantity by 1
       }));
-      console.log(`Return Date: ${returnDate}, Updated Quantity: ${book.quantity - 1}`);
-      const borrowBook={
+      const updateQuantity={
         quantity:book.quantity-1,
-        returnDate: returnDate,
-        email:user.email
       }
       axios
-      .patch(`http://localhost:3000/book/${id}`, borrowBook)
+      .patch(`http://localhost:3000/book/${id}`, updateQuantity)
       .then((res) => {
         console.log(res.data)
         Swal.fire({
@@ -76,9 +73,37 @@ const ViewDetails = () => {
     } else {
       console.log("No more copies available to borrow.");
     }
+    //add borrow book to user borrow List
+    const {
+      name,
+      bookImageUrl,
+      authorName,
+      category,
+      rating,
+      _id
+   
+       }=book
+       const borrowDate=new Date().toISOString().split('T')[0];
+    const addBookBorrow={
+      email,borrowBookImg:bookImageUrl,title:name,category:category,bookid:_id,borrowDate,
+      returnDate
+    }
+    axios
+    .post('http://localhost:3000/addBorrowBook',addBookBorrow)
+    .then((res)=>{
+     const data=res.data;
+     console.log(data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
 
     setIsModalOpen(false); // Close modal
   };
+  const handleCancelbtn=()=>{
+    document.getElementById('my_modal_4').close();
+    setIsModalOpen(false);
+  }
 
   // Check loading state and render loading spinner
   if (isLoading) {
@@ -140,70 +165,84 @@ const ViewDetails = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <dialog id="my_modal_4" className="modal" open>
-          <div className="modal-box w-11/12 max-w-5xl">
-            <div>
-              <form onSubmit={handleBorrowConfirm} className="max-sm:w-full max-md:w-full rounded-xl border border-gray-300 mx-auto">
-                <div className="grid p-10 grid-cols-2 gap-5 max-md:grid-cols-1 max-md:w-full max-sm:w-full max-sm:grid-cols-1 mx-auto">
-                  <div className="form-control ">
-                    <label className="label">
-                      <span className="label-text text-[18px] text-[#008575]">Name</span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="text"
-                        placeholder="Title of the Book"
-                        required
-                        name="displayName" defaultValue={displayName}
-                        className="input focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] input-bordered w-4/5 max-md:w-full mx-auto max-sm:w-full"
-                      />
-                    </label>
-                  </div>
-
-                  <div className="form-control ">
-                    <label className="label">
-                      <span className="label-text text-[18px] text-[#008575]">Email</span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="email"
-                        placeholder="User Email"
-                        required
-                        name="email" defaultValue={user.email}
-                        className="input focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] input-bordered w-4/5 max-md:w-full mx-auto max-sm:w-full"
-                      />
-                    </label>
-                  </div>
-
-                  <div className="form-control ">
-                    <label className="label">
-                      <span className="label-text text-[18px] text-[#008575]">Return Date</span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="date"
-                        required
-                        placeholder="Return Date"
-                        name="returnDate"
-                        className="input focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] input-bordered w-4/5 max-md:w-full mx-auto max-sm:w-full"
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="form-control my-16 ">
-                  <label className="input-group w-2/5 max-sm:w-3/5 mx-auto">
-                    <input
-                      type="submit"
-                      value="Borrow Book"
-                      className="input input-bordered font-semi-bold text-[22px] w-full text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]"
-                    />
-                  </label>
-                </div>
-              </form>
-            </div>
+        <dialog id="my_modal_4" open className="modal">
+        <div className="modal-box w-11/12 max-w-5xl shadow-xl rounded-lg overflow-hidden">
+          <div className="flex flex-col bg-gradient-to-r from-[#008575] to-[#98d4cd] items-center p-6">
+            <form
+              onSubmit={handleBorrowConfirm}
+              className="w-full max-w-3xl bg-white rounded-xl border border-gray-300 p-6 shadow-lg">
+              <h2 className="text-2xl font-semibold text-center text-[#008575] mb-4">Borrow Book</h2>
+      
+              {/* Name Field */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text text-[18px] text-[#008575]">Name</span>
+                </label>
+                <label className="input-group">
+                  <input
+                    type="text"
+                    placeholder="Title of the Book"
+                    required
+                    name="displayName"
+                    defaultValue={displayName} readOnly
+                    className="input w-full focus:ring-2 focus:ring-[#008575] text-[18px] input-bordered"
+                  />
+                </label>
+              </div>
+      
+              {/* Email Field */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text text-[18px] text-[#008575]">Email</span>
+                </label>
+                <label className="input-group">
+                  <input
+                    type="email"
+                    placeholder="User Email" readOnly
+                    required
+                    name="email"
+                    defaultValue={user.email}
+                    className="input w-full focus:ring-2 focus:ring-[#008575] text-[18px] input-bordered"
+                  />
+                </label>
+              </div>
+      
+              {/* Return Date Field */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text text-[18px] text-[#008575]">Return Date</span>
+                </label>
+                <label className="input-group">
+                  <input
+                    type="date"
+                    required
+                    name="returnDate"
+                    className="input w-full focus:ring-2 focus:ring-[#008575] text-[18px] input-bordered"
+                  />
+                </label>
+              </div>
+      
+              {/* Buttons */}
+              <div className="flex justify-center space-x-4 mt-6">
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="px-6 py-2 rounded-lg bg-[#008575] text-white hover:bg-white hover:text-[#008575] border border-[#008575] transition duration-300 text-[18px]">
+                  Borrow Book
+                </button>
+                {/* Cancel Button */}
+                <button
+                  type="button"
+                  onClick={handleCancelbtn}
+                  className="px-6 py-2 rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-400 transition duration-300 text-[18px]">
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
-        </dialog>
+        </div>
+      </dialog>
+      
       )}
     </>
   );

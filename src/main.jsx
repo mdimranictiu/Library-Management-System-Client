@@ -15,6 +15,7 @@ import AddBook from "./components/AddBook/AddBook";
 import UpdateBook from "./components/UpdateBook/UpdateBook";
 import Category from "./components/Category/Category";
 import ViewDetails from "./components/ViewDetails/ViewDetails";
+import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 
 
 
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:"/ViewDetails",
         element: <PrivateRouter><ViewDetails></ViewDetails></PrivateRouter>
+      },
+      {
+        path:"/borrowed-books",
+        element: <PrivateRouter><BorrowedBooks></BorrowedBooks></PrivateRouter>
       }
       
     ],
