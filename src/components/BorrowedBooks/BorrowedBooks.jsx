@@ -8,6 +8,7 @@ const BorrowedBooks = () => {
   const email = user.email;
   const [isLoading, setIsLoading] = useState(true);
   const [books, setBooks] = useState([]);
+  document.title='Borrowed Books';
 
   useEffect(() => {
     axios.get(`http://localhost:3000/borrowed-books?email=${email}`)

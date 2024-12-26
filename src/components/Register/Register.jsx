@@ -10,6 +10,7 @@ const Register = () => {
   const [Error,setError]=useState("")
   const {newUserCreate,signInwithGoogle}=useContext(AuthContext)
   const navigate= useNavigate()
+  document.title="Register"
   // validate Password 
   const validatePassword = (password) => {
     const uppercaseRegex = /[A-Z]/;

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../context/AuthProvider";
+
 
 const AddBook = () => {
   const categories = ["Novel", "Thriller", "History", "Drama", "Sci-Fi","Fiction"];
   const [ratingError,setratingError]=useState("")
-  const {user}=useContext(AuthContext)
+
+  document.title="Add Book"
 
   const handleAddBook = (event) => {
     event.preventDefault();
@@ -19,7 +20,6 @@ const AddBook = () => {
     const rating =parseFloat(form.rating.value);
     const shortdescription = form.shortdescription.value;
     const bookContent = form.bookContent.value;
-    const email=user.email;
     if (rating < 1 || rating > 5) {
       setratingError("Rating must be between 1 and 5");
       return;
@@ -34,8 +34,7 @@ const AddBook = () => {
       quantity,
       rating,
       shortdescription,
-      bookContent,
-      email
+      bookContent
     };
     axios
       .post("http://localhost:3000/addBook", addBook)

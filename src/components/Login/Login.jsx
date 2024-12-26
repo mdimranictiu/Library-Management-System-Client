@@ -9,6 +9,7 @@ const {loginUser,signInwithGoogle}=useContext(AuthContext)
 const navigate= useNavigate()
 const location =useLocation();
 const from = location.state || '/';
+document.title="login"
 
   const handleLogin=(event)=>{
     event.preventDefault();

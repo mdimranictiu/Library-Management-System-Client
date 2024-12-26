@@ -12,6 +12,11 @@ const UpdateBook = () => {
     const timeoutRef=useRef(null)
     const categories = ["Novel", "Thriller", "History", "Drama", "Sci-Fi","Fiction"];
   const [ratingError,setratingError]=useState("")
+  useEffect(() => {
+      if (book?.name) {
+        document.title = `${book.name} - Update Book`;
+      }
+    }, [book]);
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
 

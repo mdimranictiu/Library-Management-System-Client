@@ -17,6 +17,11 @@ const ViewDetails = () => {
 
   const location = useLocation();
   const id = location?.state;
+  useEffect(() => {
+    if (book?.name) {
+      document.title = `${book.name} - Book Details`;
+    }
+  }, [book]);
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {

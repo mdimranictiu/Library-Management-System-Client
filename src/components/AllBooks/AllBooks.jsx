@@ -6,6 +6,7 @@ const AllBooks = () => {
     const [books,setBooks]=useState([]);
     const [isloading,setIsloading]=useState(true);
     const timeoutRef=useRef(null)
+    document.title="All Books";
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
           axios.get('http://localhost:3000/books')

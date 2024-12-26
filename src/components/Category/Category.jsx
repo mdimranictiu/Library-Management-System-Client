@@ -8,6 +8,7 @@ const Category = () => {
     const category=location?.state
     const [isloading,setIsloading]=useState(true);
     const [books,setBooks]=useState([])
+    document.title=`Category- ${category}`
     const timeoutRef=useRef(null)
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {

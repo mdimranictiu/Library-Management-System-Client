@@ -3,6 +3,7 @@ import Slider from '../Slider/Slider';
 import Categories from '../Categories/Categories';
 
 const Home = () => {
+    document.title="Home"
     return (
         <div className='py-10'>
             <Slider></Slider>
