@@ -25,8 +25,8 @@ const NewArrival = () => {
  
 
     return (
-        <div className="py-10">
-            <h2 className="text-3xl py-10 font-bold text-center text-[#008575]">
+        <div className="py-5">
+            <h2 className="text-3xl py-5 font-bold text-center text-[#008575]">
                 New Arrival Books 
             </h2>
             <div className='my-16'>
