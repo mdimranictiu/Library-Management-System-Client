@@ -11,11 +11,9 @@ The **Library Management System** is a web-based application designed to overcom
 - [Key Features](#key-features)
 - [Technologies Used](#technologies-used)
 - [Development Tools](#development-tools)
+- [Dependencies used](#dependencies-used)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ---
 
@@ -47,9 +45,69 @@ The **Library Management System** is a web-based application designed to overcom
 
 ---
 
+## 📦 Dependencies  
+The project uses the following npm packages:  
+```
+@eslint
+@types/react-dom
+@types/react
+@vitejs/plugin-react
+animate.css
+aos
+autoprefixer
+axios
+daisyui
+eslint-plugin-react-hooks
+eslint-plugin-react-refresh
+eslint-plugin-react
+eslint
+firebase
+globals
+localforage
+lottie-react
+match-sorter
+postcss
+react-countup
+react-dom
+react-icons
+react-rating-stars-component
+react-responsive-carousel
+react-router-dom
+react
+sort-by
+sweetalert2
+swiper
+tailwindcss
+vite
+```
+
 ## 🛠 Development Tools
 
 - **Visual Studio Code** – IDE for coding and debugging.
 - **Git & GitHub** – Version control and collaboration.
 
 ---
+##  Installation & Setup  
+Follow these steps to run the project locally:  
+
+### 1 Clone the Repository  
+```
+git clone https://github.com/mdimranictiu/Lingo-Bingo.git
+cd lingo-bingo
+```
+### 2 Install Dependencies
+```
+npm install
+```
+### 3 Start the Development Server
+```
+npm run dev
+```
+
+ ## Resources & Links
+📖 React Documentation: https://react.dev/
+📖 Tailwind CSS Documentation: https://tailwindcss.com/
+🔥 Firebase: https://firebase.google.com/
+
+📌 Feel free to contribute, report issues, or share your feedback! 🚀
+
