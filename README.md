@@ -2,9 +2,12 @@
 
 **Live Website:** [Library Management System](https://library-management-syste-4cae8.web.app/)
 
-## 📌 Purpose
+## 📌 Overview
 
 The **Library Management System** is a web-based application designed to overcome common challenges in library management. It helps users find books across different categories, update book information, add new books to the collection, borrow books, and return them efficiently. This system enhances the library experience with easy management and a user-friendly interface.
+
+## 🖼 Screenshot  
+![Library Management System Screenshot](src/assets/Screenshot 2025-02-05 at 17-19-52 Home.png)
 
 ## 📖 Table of Contents
 
@@ -90,10 +93,15 @@ vite
 ##  Installation & Setup  
 Follow these steps to run the project locally:  
 
-### 1 Clone the Repository  
+### 1 Clone the Client Repository  
 ```
-git clone https://github.com/mdimranictiu/Lingo-Bingo.git
-cd lingo-bingo
+git clone https://github.com/mdimranictiu/Library-Management-System-Client.git
+cd Library-Management-System-Client
+```
+### 2 Clone the Server Repository  
+```
+git clone https://github.com/mdimranictiu/Library-Management-System-Server.git
+cd Library-Management-System-Server
 ```
 ### 2 Install Dependencies
 ```
