@@ -1,65 +1,55 @@
-# Project Name:  Library Management System
+# Library Management System
 
-## Purpose
+**Live Website:** [Library Management System](https://library-management-syste-4cae8.web.app/)
 
-The Library Management System based on Web is designed and developement for reducing some challanges that are normaly found in our system. This management system help you find different categories books, you can update book information and if you think add a book in the library you can do that.
-Moreover, you can borrow book from this library and you can return it. I hope you will enjoy the project.
+## 📌 Purpose
 
+The **Library Management System** is a web-based application designed to overcome common challenges in library management. It helps users find books across different categories, update book information, add new books to the collection, borrow books, and return them efficiently. This system enhances the library experience with easy management and a user-friendly interface.
 
+## 📖 Table of Contents
 
+- [Key Features](#key-features)
+- [Technologies Used](#technologies-used)
+- [Development Tools](#development-tools)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Key Features
+---
 
-- **Book Management:** Add,manage books in the library.
-- **Member Registration:** Register new library members via Email and Password or Social Login.
-- **Book Borrowing and Returning:** Track borrowed books and return deadlines.
-- **New Arrivals Section:** Displays the latest books available for borrowing.
-- **Library Statistics:** View statistics like the number of books available, registered members, and books borrowed.
-- **Categories:** Find books based on category.
-- **Responsive Design:** Optimized for both desktop and mobile views.
-- **User Authentication:** Secure login system for members 
+## ✨ Key Features
 
+- **📚 Book Management** – Add and manage books in the library.
+- **📝 Member Registration** – Register new users via email, password, or social login.
+- **📖 Book Borrowing & Returning** – Track borrowed books and return deadlines.
+- **📢 New Arrivals Section** – Showcases the latest books available for borrowing.
+- **📊 Library Statistics** – View insights like available books, registered members, and borrowed books.
+- **🔍 Categories** – Find books based on specific genres or categories.
+- **📱 Responsive Design** – Optimized for desktop and mobile usage.
+- **🔒 User Authentication** – Secure login system for library members.
 
-## Technologies Used
+---
 
-- **Frontend:**
-  - React.js 
-  - Tailwind CSS 
-  - React Router 
-  - DaisyUi
+## 💻 Technologies Used
 
-- **Backend:**
-  - Node.js
-  - Express.js 
-  - MongoDB 
+### **Frontend**
+- **React.js** – Frontend framework for building the UI.
+- **Tailwind CSS** – For styling and responsive design.
+- **React Router** – Handles navigation and routing.
+- **DaisyUI** – UI component library for an enhanced design.
 
-- **Development Tools:**
-  - Visual Studio Code (IDE)
-  - Git and GitHub 
+### **Backend**
+- **Node.js** – Backend runtime environment.
+- **Express.js** – Lightweight framework for building APIs.
+- **MongoDB** – NoSQL database for storing library data.
 
-- **Deploy**
-  - Firebase for client
-  - Vercel for server
- 
+---
 
-## npm packeges used in this Project
+## 🛠 Development Tools
 
-├── autoprefixer
-├── axios
-├── daisyui
-├── match-sorter
-├── postcss
-├── react-countup
-├── react-dom
-├── react-icons
-├── react-infinite-logo-slider
-├── react-rating-stars-component
-├── react-router-dom
-├── react
-├── sort-by
-├── sweetalert2
-├── swiper
-├── tailwindcss
+- **Visual Studio Code** – IDE for coding and debugging.
+- **Git & GitHub** – Version control and collaboration.
 
-## Live URL:  https://library-management-syste-4cae8.web.app/
-
+---
