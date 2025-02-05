@@ -7,7 +7,7 @@
 The **Library Management System** is a web-based application designed to overcome common challenges in library management. It helps users find books across different categories, update book information, add new books to the collection, borrow books, and return them efficiently. This system enhances the library experience with easy management and a user-friendly interface.
 
 ## 🖼 Screenshot  
-![Library Management System Screenshot](src/assets/Screenshot 2025-02-05 at 17-19-52 Home.png)
+![Library Management System Screenshot](src/assets/d.png)
 
 ## 📖 Table of Contents
 
