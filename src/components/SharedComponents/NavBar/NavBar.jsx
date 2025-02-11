@@ -6,7 +6,6 @@ import { AuthContext } from "../../../context/AuthProvider";
 
 const NavBar = () => {
   const {user,logOut}= useContext(AuthContext)
-  console.log(user?.email, user?.displayName)
   const [isHovered, setIsHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,7 +16,7 @@ const NavBar = () => {
       </li>
       <li>
             <Link to="/books">All Books</Link>
-          </li>
+       </li>
       {user && (
         <>
          

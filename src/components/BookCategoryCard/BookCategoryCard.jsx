@@ -13,17 +13,16 @@ const BookCategoryCard = ({ book }) => {
     quantity
   } = book;
   return (
-    <div className="card card-compact bg-[#eff1ed] shadow-2xl flex flex-col justify-between">
+    <div className="card card-compact bg-white shadow-xl flex flex-col justify-between">
       <div className="card-body flex-grow">
-        <div className='w-3/5 h-[300px] mx-auto rounded-lg my-5'>
-          <img src={bookImageUrl} alt="Book" className='w-full h-full' />
+        <div className='h-[280px] w-[250px] mx-auto rounded-lg my-5'>
+          <img src={bookImageUrl} alt="Book" className='w-full h-full  rounded-lg' />
         </div>
 
         <div className='flex flex-col items-center'>
-          <h2 className="card-title mt-2 text-[#008575]">Book Name: {name}</h2>
-          <h3 className="font-semibold text-[16px] mt-2">Author Name: {authorName}</h3>
-          <h3 className="font-semibold text-[16px] mt-2">Category: {category}</h3>
-          <br />
+          <h2 className="card-title  text-[#008575]">{name}</h2>
+          <h3 className="font-semibold text-[16px] mt-1">Author: {authorName}</h3>
+          <h3 className="font-semibold text-[16px] mt-1"><span className="font-semibold"><Link className='text-[#3c65f5]' to="/category" state={category}>{category}</Link></span></h3>
           <ReactStars
             count={5} 
             value={rating}
@@ -33,7 +32,7 @@ const BookCategoryCard = ({ book }) => {
             edit={false} 
           />
           <br />
-          <h3 className="font-bold text-[16px] mt-2">Quantity: {quantity}</h3>
+          <h3 className="font-bold text-[16px] ">Available Quantity: {quantity}</h3>
 
 
         

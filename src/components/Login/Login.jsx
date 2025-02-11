@@ -2,129 +2,60 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const { loginUser, signInwithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
+  document.title = "Login";
 
-const {loginUser,signInwithGoogle}=useContext(AuthContext)
-const navigate= useNavigate()
-const location =useLocation();
-const from = location.state || '/';
-document.title="login"
-
-  const handleLogin=(event)=>{
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const form=event.target;
-    const email= form.email.value;
-    const password=form.password.value;
+    const { email, password } = event.target.elements;
+    try {
+      await loginUser(email.value, password.value);
+      event.target.reset();
+      navigate(from);
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Login Failed", text: error.message, confirmButtonText: "Try Again" });
+    }
+  };
 
-    loginUser(email,password)
-    .then((userCredential)=>{
-      const user=userCredential.user;
-      form.reset()
-       navigate(from)
-    })
-    .catch((error)=>{
-      Swal.fire({
-              icon: "error",
-              title: "Login Failed",
-              text: `${error.message}`,
-              confirmButtonText: 'Try Again',
-      
-            });
-    })
-
-  }
-
-   const handleGoogleSignIn=()=>{
-     signInwithGoogle()
-     .then((data)=>{
-       const user=data.user;
-       console.log(user)
-      navigate(from)
-     })
-     .catch((error)=>{
-       Swal.fire({
-         icon: "error",
-         title: "Login Failed",
-         text: `${error.message}`,
-         confirmButtonText: 'Try Again',
- 
-       });
-     })
-   
-   }
- 
-
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInwithGoogle();
+      navigate(from);
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Login Failed", text: error.message, confirmButtonText: "Try Again" });
+    }
+  };
 
   return (
-    <div className="my-10">
-      <h2 className="text-3xl py-5 font-bold text-center text-[#008575]">
-        Log In
-      </h2>
-      <div className="p-5 w-full sm:w-full md:w-full lg:w-2/5 border border-gray-300 mx-auto">
-        <form onSubmit={handleLogin}>
-          <div className="grid p-10 gap-5  max-md:w-full max-sm:w-full mx-auto w-4/5">
-            <div className="form-control ">
-              <label className="label">
-                <span className="label-text text-[18px] text-[#008575]">
-                  Email
-                </span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="email"
-                  placeholder="Enter Your Email" required
-                  name="email"
-                  className="input  focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control ">
-              <label className="label">
-                <span className="label-text text-[18px] text-[#008575]">
-                  Password
-                </span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="password"
-                  placeholder="Password" required
-                  name="password"
-                  className="input  focus:ring-1 focus:outline-none focus:ring-[#008575] text-[18px] w-full input-bordered"
-                />
-              </label>
-            </div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-5">
+      <h2 className="text-4xl font-extrabold text-[#008575] mb-3 text-center">Welcome Back!</h2>
+      <p className="text-lg text-gray-600 mb-6 text-center">Log in with your email and password to continue</p>
+      <div className="w-full max-w-xl p-8 border border-gray-300 shadow-lg rounded-lg bg-white">
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div className="form-control">
+            <label className="label text-[#008575] text-lg">Email</label>
+            <input type="email" name="email" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Enter Your Email" />
           </div>
-          <div className="form-control my-16 ">
-            <label className="input-group">
-              <input
-                type="submit"
-                value="Log In"
-                className="input input-bordered w-full font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]"
-              />
-            </label>
-
-            <p className="text-center mt-5">
-              Are you new to here?{" "}
-              <Link className="font-bold" to="/register">
-                {" "}
-                Register
-              </Link>{" "}
-            </p>
+          <div className="form-control">
+            <label className="label text-[#008575] text-lg">Password</label>
+            <input type="password" name="password" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Password" />
           </div>
+          <button type="submit" className="w-full bg-[#008575] text-white text-lg font-semibold py-2 rounded-md hover:bg-white hover:text-[#008575] border border-[#008575] transition">Log In</button>
         </form>
-     <div className="flex flex-col gap-5">
-     <label className="input-group">
-          <button onClick={handleGoogleSignIn} className="justify-center gap-2 w-full input input-bordered font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]">
-            Continue with Google
+        <p className="text-center mt-4 text-gray-600">
+          Are you new here? <Link to="/register" className="text-[#008575] font-bold">Register</Link>
+        </p>
+        <div className="mt-5">
+          <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-2 text-lg font-semibold   py-2 rounded-md   border  transition">
+            <FcGoogle /> Sign in with Google
           </button>
-        </label>
-        {/* <label className="input-group">
-          <button className="justify-center gap-2 w-full input input-bordered font-semi-bold text-[22px]  max-sm:mx-auto  text-white hover:bg-white duration-300 cursor-pointer bg-[#008575] hover:text-[#008575]">
-            Continue with Github
-          </button>
-        </label> */}
-     </div>
+        </div>
       </div>
     </div>
   );

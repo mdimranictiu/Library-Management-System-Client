@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BorrowBook = ({ book, books, setBooks }) => {
   const [oldbook, setOldBook] = useState({});
@@ -77,14 +78,14 @@ const BorrowBook = ({ book, books, setBooks }) => {
   return (
     <div className="card card-compact bg-[#eff1ed] shadow-2xl flex flex-col justify-between">
       <div className="card-body flex-grow">
-        <div className="w-3/5 h-[300px] mx-auto rounded-lg my-5">
-          <img alt="Book" src={borrowBookImg} className="w-full h-full" />
+        <div className="h-[280px] w-[250px] mx-auto rounded-lg my-5">
+          <img alt={`${name}`} src={borrowBookImg} className="w-full h-full" />
         </div>
 
         <div className="flex flex-col items-center">
-          <h2 className="card-title mt-2 text-[#008575]">Book Name: {title}</h2>
+          <h2 className="card-title mt-2 text-[#008575]">{title}</h2>
           <h3 className="font-semibold text-[16px] mt-2">
-            Category: {category}
+          <span className="font-semibold"><Link className='text-[#3c65f5]' to="/category" state={category}>{category}</Link></span>
           </h3>
           <h3 className="font-semibold text-[16px] mt-2">
             Borrow Date: {borrowDate}

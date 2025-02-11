@@ -113,7 +113,7 @@ const ViewDetails = () => {
   // Check loading state and render loading spinner
   if (isLoading) {
     return (
-      <div className="items-center text-center py-16">
+      <div className="items-center text-center py-16 min-h-screen">
         <span className="loading loading-lg loading-ring text-primary"></span>
         <span className="loading loading-lg loading-ring text-secondary"></span>
         <span className="loading loading-lg loading-ring text-accent"></span>
@@ -131,16 +131,16 @@ const ViewDetails = () => {
   return (
     <>
       <div>
-        <div className="card bg-base-100 w-4/5 max-md:w-full max-sm:w-full my-5 mx-auto shadow-xl">
-          <div className="card-body">
+        <div className="card bg-gray-200 w-4/5 max-md:w-full max-sm:w-full my-5 mx-auto shadow-xl">
+          <div className="card-body ">
             <h3 className="text-2xl font-bold text-center py-5">Book Information</h3>
-            <div className='w-1/5 bg-[#89dfd5] rounded-lg max-md:w-3/5 max-sm:w-full mx-auto h-[220px] '>
-              <img className='w-full h-full object-cover' src={bookImageUrl} alt="BookImage" />
+            <div className='w-1/5 bg-[#89dfd5] rounded-lg max-md:w-3/5 max-sm:w-full mx-auto min-h-[220px] max-sm:h-[320px] '>
+              <img className='w-full h-full rounded-lg ' src={bookImageUrl} alt="BookImage" />
             </div>
-            <div className='w-4/5 mx-auto rounded-lg p-10 max-md:p-5 max-sm:p-3 max-md:w-full max-sm:w-full '>
-              <div className="flex flex-col items-center gap-2 text-[20px]">
-                <h3 className="text-xl text-[#008575] font-semibold">Book Name: {name}</h3>
-                <p><span className="font-semibold">Category: <Link className='text-[#3c65f5]' to="/category" state={category}>{category}</Link></span></p>
+            <div className='w-4/5 mx-auto rounded-lg p-5 max-md:p-5 max-sm:p-3 max-md:w-full max-sm:w-full '>
+              <div className="flex flex-col items-center gap-2 ">
+                <h3 className="text-xl text-[#008575] font-semibold">{name}</h3>
+                <p><span className="font-semibold"><Link className='text-[#3c65f5]' to="/category" state={category}>{category}</Link></span></p>
                 <p><span className="font-semibold">Author Name: {authorName}</span></p>
                 <p><ReactStars
                   count={5}
@@ -150,9 +150,11 @@ const ViewDetails = () => {
                   isHalf={true}
                   edit={false}
                 /></p>
-                <p><span className="font-semibold">Available Quantity: {quantity}</span></p>
-                <p><span className="font-semibold">Short Description: {shortdescription}</span></p>
-                <p><span className="font-semibold">Book Content: {bookContent}</span></p>
+                <p><span className="font-semibold"><span>Available Quantity:</span> {quantity}</span></p>
+                <p><span className="font-semibold">Short Description:</span>  </p>
+                <p className='text-justify'>{shortdescription}</p>
+                <p><span className="font-semibold">Book Content: </span> </p>
+                <p className='text-justify'>{bookContent}</p>
               </div>
               <div className="w-2/5 max-sm:w-full max-md:w-full py-10 mx-auto">
                 <button

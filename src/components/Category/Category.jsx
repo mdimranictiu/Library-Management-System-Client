@@ -34,14 +34,14 @@ const Category = () => {
     
     ,[])
     return (
-        <div className="py-10  min-h-screen">
+        <div className="py-10 bg-gray-200 px-5 min-h-screen">
         <h2 className="text-3xl pb-10 text-center font-bold text-[#008575]">
           Books: {category}
         </h2>
         
           {isloading ?(
              <>
-            <div className="items-center text-center py-16">
+            <div className="items-center text-center py-16 min-h-screen">
               <span className="loading loading-lg loading-ring text-primary"></span>
               <span className="loading loading-lg loading-ring text-secondary"></span>
               <span className="loading loading-lg loading-ring text-accent"></span>
@@ -54,7 +54,7 @@ const Category = () => {
              </>
   
           ) :(
-           <div className="grid lg:grid-cols-3 mx-auto md:grid-cols-2 sm:grid-cols-1 gap-10">
+           <div className="grid xl:grid-cols-4 lg:grid-cols-3 mx-auto md:grid-cols-2 grid-cols-1 gap-10">
            {books.map((book)=><BookCategoryCard key={book._id} book={book}></BookCategoryCard>)}
           </div>
           )}

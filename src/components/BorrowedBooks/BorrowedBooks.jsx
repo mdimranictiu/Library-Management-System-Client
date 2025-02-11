@@ -39,7 +39,7 @@ const BorrowedBooks = () => {
           <span className="loading loading-lg loading-ring text-error"></span>
         </div>
       ) : books.length ? (
-        <div className="grid lg:grid-cols-3 mx-auto md:grid-cols-2 sm:grid-cols-1 gap-10">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 mx-auto md:grid-cols-2 grid-cols-1 gap-10">
           {books.map((book) => (
             <BorrowBook
               books={books}
@@ -50,7 +50,7 @@ const BorrowedBooks = () => {
           ))}
         </div>
       ) : (
-        <h2 className="text-3xl pb-10 text-center font-bold text-[#008575]">
+        <h2 className="text-3xl md:text-2xl sm:text-xl pb-10 text-center font-bold text-[#008575]">
           You Have No Borrowed Books
         </h2>
       )}

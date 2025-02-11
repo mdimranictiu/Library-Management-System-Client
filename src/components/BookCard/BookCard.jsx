@@ -19,14 +19,14 @@ const BookCard = ({book}) => {
     return (
         <div className="card card-compact bg-[#eff1ed] shadow-2xl  flex flex-col justify-between">
             <div className="card-body flex-grow">
-                 <div className='w-3/5 h-[300px] mx-auto rounded-lg  max-auto my-5'>
+                 <div className='h-[280px] w-[250px] mx-auto rounded-lg my-5'>
                     <img src={bookImageUrl} alt="Book Image URL" className='w-full h-full' />
                  </div>
                 
                 <div className='flex flex-col items-center'>
-                <h2 className="card-title mt-2 text-[#008575]">Book Name: {name}</h2>
-                <h3 className="font-semibold text-[16px] mt-2">Author Name: {authorName}</h3>
-                <h3 className="font-semibold text-[16px] mt-2 py-2">Category: {category}</h3>
+                <h2 className="card-title mt-2 text-[#008575]">{name}</h2>
+                <h3 className="font-semibold text-[16px] mt-2">Author: {authorName}</h3>
+                <h3 className="font-semibold text-[16px] mt-2 py-2">{category}</h3>
                    <ReactStars
                             count={5} 
                             value={rating}
