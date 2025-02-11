@@ -92,7 +92,8 @@ const NavBar = () => {
           <IoIosMenu />
           </div>
         </div>
-       <Link to='/'> <a className="btn btn-ghost text-xl">Library MS </a></Link>
+        <Link to="/" className="btn btn-ghost text-xl">Library MS</Link>
+
       </div>
       <div
         className={`fixed top-[60px] left-0 py-10 z-40 w-full  bg-[white] shadow-lg transform transition-transform duration-300 ${

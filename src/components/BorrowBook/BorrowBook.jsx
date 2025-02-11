@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -20,15 +20,18 @@ const BorrowBook = ({ book, books, setBooks }) => {
   } = book;
 
   // get book info
+ useEffect(()=>{
   axiosPrivate
-    .get(`/book/${bookid}`)
-    .then((res) => {
-      const result = res.data;
-      setOldBook(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  .get(`/book/find/${bookid}`)
+  .then((res) => {
+    const result = res.data;
+    setOldBook(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+ },[axiosPrivate])
+   
 
   const handleReturn = () => {
     console.log("return click", bookid, borrowedBookId);
@@ -67,7 +70,7 @@ const BorrowBook = ({ book, books, setBooks }) => {
           quantity: oldbook.quantity + 1,
         };
         axiosPrivate
-          .patch(`/book/${bookid}`, updateQuantity)
+          .patch(`/book/update/${bookid}`, updateQuantity)
           .then((res) => {
             console.log(res.data);
           })

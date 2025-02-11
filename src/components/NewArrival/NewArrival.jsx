@@ -21,7 +21,7 @@ const NewArrival = () => {
           .catch((error) => {
             console.log(error);
           });
-      }, []);
+      }, [axiosPublic]);
 
 
  
@@ -41,8 +41,8 @@ const NewArrival = () => {
         >
           
           {
-            newbook.map((b)=><><h2>  <Slider.Slide>
-            <Link to="/ViewDetails" state={b._id}>
+            newbook.map((b,index)=><><h2>  <Slider.Slide key={index}>
+            <Link  to="/ViewDetails" state={b._id}>
               <div className="w-[200px] h-[250px] px-5 rounded-sm cursor-pointer">
                 <img
                   src={b.bookImageUrl}

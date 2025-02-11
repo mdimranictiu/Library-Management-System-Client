@@ -7,7 +7,7 @@ import UseAxiosPrivate from "../../hook/UseAxiosPrivate/UseAxiosPrivate";
 const UpdateBook = () => {
     const location= useLocation();
     const axiosPrivate=UseAxiosPrivate()
-    const id=location?.state;
+    const {id}=location?.state;
     const [book,setBook]=useState([]);
     const [isloading,setIsloading]=useState(true);
     const [isupdating,setisupdating]=useState(false)
@@ -22,7 +22,7 @@ const UpdateBook = () => {
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
 
-          axiosPrivate.get(`/book/${id}`)
+          axiosPrivate.get(`/book/find/${id}`)
           .then((res)=>{
               const result=res.data;
               setBook(result)
@@ -68,7 +68,7 @@ const UpdateBook = () => {
     };
     setisupdating(true);
     axiosPrivate
-      .patch(`/book/${id}`, UpdateBook)
+      .patch(`/book/update/${id}`, UpdateBook)
       .then((res) => {
         console.log(res.data)
         Swal.fire({

@@ -55,7 +55,7 @@ const Slider = () => {
                 Explore a Wide Range of Book Categories
               </h2>
               <br />
-              <button class="btn border-none text-white  w-[200px] text-[16px] hover:bg-white outline-none hover:text-[#008575] bg-[#008575]">
+              <button className="btn border-none text-white  w-[200px] text-[16px] hover:bg-white outline-none hover:text-[#008575] bg-[#008575]">
                 Explore Categories
               </button>
             </div>

@@ -6,14 +6,14 @@ import UseAxiosPrivate from '../../hook/UseAxiosPrivate/UseAxiosPrivate';
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
-  const email = user.email;
+  const email = user?.email;
   const [isLoading, setIsLoading] = useState(true);
   const [books, setBooks] = useState([]);
   document.title='Borrowed Books';
   const axiosPrivate=UseAxiosPrivate()
 
   useEffect(() => {
-    axiosPrivate.get(`https://library-management-system-server-ten.vercel.app/borrowed-books?email=${email}`)
+    axiosPrivate.get(`/borrowed-books?email=${email}`)
       .then((res) => {
         setBooks(res.data);
         setIsLoading(false);
