@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthProvider';
 import BorrowBook from '../BorrowBook/BorrowBook';
+import UseAxiosPrivate from '../../hook/UseAxiosPrivate/UseAxiosPrivate';
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
@@ -9,9 +10,10 @@ const BorrowedBooks = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [books, setBooks] = useState([]);
   document.title='Borrowed Books';
+  const axiosPrivate=UseAxiosPrivate()
 
   useEffect(() => {
-    axios.get(`https://library-management-system-server-ten.vercel.app/borrowed-books?email=${email}`)
+    axiosPrivate.get(`https://library-management-system-server-ten.vercel.app/borrowed-books?email=${email}`)
       .then((res) => {
         setBooks(res.data);
         setIsLoading(false);

@@ -3,13 +3,15 @@ import Slider from 'react-infinite-logo-slider'
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import UseAxiosPublic from '../../hook/UseAxiosPublic/UseAxiosPublic';
 
 
 const NewArrival = () => {
     const [newbook,setnewbook]=useState([])
+    const axiosPublic=UseAxiosPublic()
 
     useEffect(() => {
-        axios.get(`https://library-management-system-server-ten.vercel.app/latestbooks`)
+        axiosPublic.get(`/latestbooks`)
           .then((res) => {
             const result=res.data
             setnewbook(result);

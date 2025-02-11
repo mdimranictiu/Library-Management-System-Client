@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import Swal from "sweetalert2";
+import UseAxiosPrivate from "../../hook/UseAxiosPrivate/UseAxiosPrivate";
 
 const UpdateBook = () => {
     const location= useLocation();
+    const axiosPrivate=UseAxiosPrivate()
     const id=location?.state;
     const [book,setBook]=useState([]);
     const [isloading,setIsloading]=useState(true);
@@ -20,7 +22,7 @@ const UpdateBook = () => {
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
 
-          axios.get(`https://library-management-system-server-ten.vercel.app/book/${id}`)
+          axiosPrivate.get(`/book/${id}`)
           .then((res)=>{
               const result=res.data;
               setBook(result)
@@ -65,8 +67,8 @@ const UpdateBook = () => {
       rating,
     };
     setisupdating(true);
-    axios
-      .patch(`https://library-management-system-server-ten.vercel.app/book/${id}`, UpdateBook)
+    axiosPrivate
+      .patch(`/book/${id}`, UpdateBook)
       .then((res) => {
         console.log(res.data)
         Swal.fire({

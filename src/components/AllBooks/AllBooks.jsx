@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import BookCard from "../BookCard/BookCard";
+import UseAxiosPrivate from "../../hook/UseAxiosPrivate/UseAxiosPrivate";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -11,13 +12,14 @@ const AllBooks = () => {
   const timeoutRef = useRef(null);
 
   document.title = "All Books";
+  const axiosPrivate=UseAxiosPrivate()
 
   // Fetch books with pagination and search
   useEffect(() => {
     setIsLoading(true);
     timeoutRef.current = setTimeout(() => {
-      axios
-        .get(`https://library-management-system-server-ten.vercel.app/books`, {
+      axiosPrivate
+        .get(`/books`, {
           params: {
             search,
             page: currentPage,

@@ -5,6 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
+import UseAxiosPrivate from '../../hook/UseAxiosPrivate/UseAxiosPrivate';
 
 
 const ViewDetails = () => {
@@ -14,6 +15,7 @@ const ViewDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState({});
   const timeoutRef = useRef(null);
+  const axiosPrivate=UseAxiosPrivate()
 
   const location = useLocation();
   const id = location?.state;
@@ -25,7 +27,7 @@ const ViewDetails = () => {
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
-      axios.get(`https://library-management-system-server-ten.vercel.app/book/${id}`)
+      axiosPrivate.get(`/book/${id}`)
         .then((res) => {
           const result = res.data;
           setBook(result);
@@ -56,8 +58,8 @@ const ViewDetails = () => {
       const updateQuantity={
         quantity:book.quantity-1,
       }
-      axios
-      .patch(`https://library-management-system-server-ten.vercel.app/book/${id}`, updateQuantity)
+      axiosPrivate
+      .patch(`/book/${id}`, updateQuantity)
       .then((res) => {
         console.log(res.data)
         Swal.fire({
@@ -93,8 +95,8 @@ const ViewDetails = () => {
       email,borrowBookImg:bookImageUrl,title:name,category:category,bookid:_id,borrowDate,
       returnDate
     }
-    axios
-    .post('https://library-management-system-server-ten.vercel.app/addBorrowBook',addBookBorrow)
+  
+    axiosPrivate.post('/addBorrowBook',addBookBorrow)
     .then((res)=>{
      const data=res.data;
      console.log(data)

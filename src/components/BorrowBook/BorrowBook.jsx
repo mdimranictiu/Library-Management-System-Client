@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import UseAxiosPrivate from "../../hook/UseAxiosPrivate/UseAxiosPrivate";
 
 const BorrowBook = ({ book, books, setBooks }) => {
   const [oldbook, setOldBook] = useState({});
+  const axiosPrivate=UseAxiosPrivate()
 
   const {
     email,
@@ -18,8 +20,8 @@ const BorrowBook = ({ book, books, setBooks }) => {
   } = book;
 
   // get book info
-  axios
-    .get(`https://library-management-system-server-ten.vercel.app/book/${bookid}`)
+  axiosPrivate
+    .get(`/book/${bookid}`)
     .then((res) => {
       const result = res.data;
       setOldBook(result);
@@ -40,9 +42,9 @@ const BorrowBook = ({ book, books, setBooks }) => {
       confirmButtonText: "Yes, Return it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
+        axiosPrivate
           .delete(
-            `https://library-management-system-server-ten.vercel.app/borrowed-books/delete/${borrowedBookId}`
+            `/borrowed-books/delete/${borrowedBookId}`
           )
           .then((response) => {
             if (response.data.deletedCount > 0) {
@@ -64,8 +66,8 @@ const BorrowBook = ({ book, books, setBooks }) => {
         const updateQuantity = {
           quantity: oldbook.quantity + 1,
         };
-        axios
-          .patch(`https://library-management-system-server-ten.vercel.app/book/${bookid}`, updateQuantity)
+        axiosPrivate
+          .patch(`/book/${bookid}`, updateQuantity)
           .then((res) => {
             console.log(res.data);
           })

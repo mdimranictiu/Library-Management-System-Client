@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BookCategoryCard from '../BookCategoryCard/BookCategoryCard';
 import axios from 'axios';
+import UseAxiosPrivate from '../../hook/UseAxiosPrivate/UseAxiosPrivate';
 
 const Category = () => {
     const location=useLocation();
+    const axiosPrivate=UseAxiosPrivate()
     const category=location?.state
     const [isloading,setIsloading]=useState(true);
     const [books,setBooks]=useState([])
@@ -12,7 +14,7 @@ const Category = () => {
     const timeoutRef=useRef(null)
     useEffect(()=>{
         timeoutRef.current = setTimeout(() => {
-          axios.get(`https://library-management-system-server-ten.vercel.app/books/category?category=${category}`)
+          axiosPrivate.get(`/books/category?category=${category}`)
           .then((res)=>{
               const result=res.data;
               setBooks(result)

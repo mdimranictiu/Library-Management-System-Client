@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import UseAxiosPrivate from "../../hook/UseAxiosPrivate/UseAxiosPrivate";
 
 
 const AddBook = () => {
@@ -8,6 +9,7 @@ const AddBook = () => {
   const [ratingError,setratingError]=useState("")
 
   document.title="Add Book"
+  const axiosPrivate=UseAxiosPrivate()
 
   const handleAddBook = (event) => {
     event.preventDefault();
@@ -36,8 +38,8 @@ const AddBook = () => {
       shortdescription,
       bookContent
     };
-    axios
-      .post("https://library-management-system-server-ten.vercel.app/addBook", addBook)
+    axiosPrivate
+      .post("/addBook", addBook)
       .then(() => {
         Swal.fire({
           html: `

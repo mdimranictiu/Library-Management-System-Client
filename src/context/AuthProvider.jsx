@@ -2,11 +2,13 @@ import React, { createContext, useState } from 'react';
 import { auth } from '../Firebase/Firebase.init';
 import { useEffect } from 'react';
 import {signInWithPopup, createUserWithEmailAndPassword,GoogleAuthProvider,onAuthStateChanged, signInWithEmailAndPassword,signOut } from 'firebase/auth';
+import UseAxiosPublic from '../hook/UseAxiosPublic/UseAxiosPublic';
 export const AuthContext= createContext(null);
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
       const [user,setUser]=useState(null)
       const [loading,setLoading]=useState(true)
+      const axiosPublic=UseAxiosPublic()
 
       const newUserCreate=(email,password)=>{
         setLoading(true)
@@ -29,16 +31,33 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
       }
      
-      useEffect(()=>{
-        const unSubscribe= onAuthStateChanged(auth,currentUser=>{
-             console.log('Current User', currentUser);
-             setUser(currentUser);
-             setLoading(false)
-         })
-         return ()=>{ 
-             unSubscribe()
-         }
-     },[]) 
+      useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            console.log('Current User:', currentUser);
+            setUser(currentUser);
+            setLoading(false);
+    
+            if (currentUser) {
+                const userEmail = { email: currentUser.email };
+                try {
+                    const res = await axiosPublic.post('/jwt', userEmail);
+                    if (res.data.token) {
+                        localStorage.setItem('access-token', res.data.token);
+                    } else {
+                        localStorage.removeItem('access-token');
+                    }
+                } catch (error) {
+                    console.error("JWT Request Failed:", error);
+                    localStorage.removeItem('access-token');
+                }
+            } else {
+                localStorage.removeItem('access-token');
+            }
+        });
+    
+        return () => unSubscribe();
+    }, [axiosPublic]);
+    
 
       const authInfo={
         newUserCreate,
