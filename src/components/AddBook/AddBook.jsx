@@ -68,7 +68,7 @@ const AddBook = () => {
 
   return (
     <div className="py-10">
-      <h2 className="text-3xl  text-center font-bold text-[#008575]">
+      <h2 className="text-3xl py-5 text-center font-bold text-[#008575]">
         Add Book
       </h2>
       <div className="w-4/5 max-sm:w-full mx-auto p-10 rounded-xl shadow-2xl">

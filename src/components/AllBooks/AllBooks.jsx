@@ -9,10 +9,11 @@ const AllBooks = () => {
   const [search, setSearch] = useState(""); // Search state
   const [currentPage, setCurrentPage] = useState(1); // Current page state
   const [totalPages, setTotalPages] = useState(1); // Total pages state
-  const timeoutRef = useRef(null);
+  const [sortOrder, setSortOrder] = useState("desc"); // Sorting order state
 
+  const timeoutRef = useRef(null);
   document.title = "All Books";
-  const axiosPrivate=UseAxiosPrivate()
+  const axiosPrivate = UseAxiosPrivate();
 
   // Fetch books with pagination and search
   useEffect(() => {
@@ -28,8 +29,15 @@ const AllBooks = () => {
         })
         .then((res) => {
           const result = res.data;
-          setBooks(result.books); // Assuming `books` is in the response
-          setTotalPages(result.totalPages); // Assuming `totalPages` is in the response
+          let sortedBooks = result.books;
+
+          // Apply sorting before setting books
+          sortedBooks = sortedBooks.sort((a, b) =>
+            sortOrder === "asc" ? a.rating - b.rating : b.rating - a.rating
+          );
+
+          setBooks(sortedBooks);
+          setTotalPages(result.totalPages);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -39,30 +47,17 @@ const AllBooks = () => {
     }, 1000);
 
     return () => clearTimeout(timeoutRef.current);
-  }, [search, currentPage]); // Fetch data whenever search or currentPage changes
+  }, [search, currentPage, sortOrder]); // Update when search, page, or sortOrder changes
 
   // Handle search input change
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    setCurrentPage(1); // Reset to first page when search changes
+    setCurrentPage(1);
   };
 
-  // Trigger search manually
-  const handleSearchClick = () => {
-    setCurrentPage(1); // Reset to first page when search is clicked
-  };
-
-  // Handle pagination
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
+  // Handle sorting toggle
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
   return (
@@ -72,34 +67,44 @@ const AllBooks = () => {
       </h2>
 
       {/* Search Bar */}
-      <div className="flex items-center max-sm:w-full max-md:w-4/5 w-3/5 mx-auto my-10 bg-gray-200 p-2 rounded-lg shadow">
+        <div className="flex justify-center items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search books by title, author or category"
-          className="w-full p-2 rounded-l-lg focus:outline-none"
+          className="w-1/2 p-2 rounded-lg border border-gray-300 focus:outline-none"
           value={search}
           onChange={handleSearchChange}
         />
         <button
-          className="p-2 bg-blue-600 text-white rounded-r-lg"
-          onClick={handleSearchClick} // Trigger search manually
+          className="px-10 py-2 bg-[#008575] text-white rounded-lg"
+          onClick={() => setCurrentPage(1)}
         >
-          <span>Search</span>
+          Search
         </button>
+
+       
       </div>
+       {/* Sort Button */}
+       <button
+          className="px-4 py-2 my-5 bg-[#008575] text-white rounded-lg"
+          onClick={toggleSortOrder}
+        >
+          Sort by Rating {sortOrder === "asc" ? "(Low to High)" : "(High to Low)"}
+        </button>
+
 
       {/* Loading Indicator */}
       {isLoading ? (
-        <div className="items-center text-center py-16">
-          <span className="loading loading-lg loading-ring text-primary"></span>
-          <span className="loading loading-lg loading-ring text-secondary"></span>
-          <span className="loading loading-lg loading-ring text-accent"></span>
-          <span className="loading loading-lg loading-ring text-neutral"></span>
-          <span className="loading loading-lg loading-ring text-info"></span>
-          <span className="loading loading-lg loading-ring text-success"></span>
-          <span className="loading loading-lg loading-ring text-warning"></span>
-          <span className="loading loading-lg loading-ring text-error"></span>
-        </div>
+  <div className="items-center min-h-screen text-center py-16">
+  <span className="loading loading-lg loading-ring text-primary"></span>
+  <span className="loading loading-lg loading-ring text-secondary"></span>
+  <span className="loading loading-lg loading-ring text-accent"></span>
+  <span className="loading loading-lg loading-ring text-neutral"></span>
+  <span className="loading loading-lg loading-ring text-info"></span>
+  <span className="loading loading-lg loading-ring text-success"></span>
+  <span className="loading loading-lg loading-ring text-warning"></span>
+  <span className="loading loading-lg loading-ring text-error"></span>
+</div>
       ) : books.length === 0 ? (
         <div className="text-center py-16 text-xl text-gray-500">
           <p>No books found matching your search criteria.</p>
@@ -116,7 +121,7 @@ const AllBooks = () => {
       {books.length > 0 && (
         <div className="flex justify-center items-center gap-4 mt-10">
           <button
-            onClick={handlePreviousPage}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
             className="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50"
           >
@@ -126,9 +131,9 @@ const AllBooks = () => {
             Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={handleNextPage}
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
+            className="px-4 py-2 bg-[#008575] text-white rounded-lg disabled:opacity-50"
           >
             Next
           </button>

@@ -81,9 +81,9 @@ const BorrowBook = ({ book, books, setBooks }) => {
     });
   };
   return (
-    <div className="card card-compact bg-[#eff1ed] shadow-2xl flex flex-col justify-between">
+    <div className="card card-compact bg-white shadow-xl flex flex-col justify-between">
       <div className="card-body flex-grow">
-        <div className="h-[280px] w-[250px] mx-auto rounded-lg my-5">
+        <div className="h-[280px] max-w-[250px] mx-auto rounded-lg my-5">
           <img alt={`${name}`} src={borrowBookImg} className="w-full h-full" />
         </div>
 

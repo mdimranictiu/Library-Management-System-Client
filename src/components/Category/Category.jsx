@@ -36,7 +36,7 @@ const Category = () => {
     
     ,[])
     return (
-        <div className="py-10 bg-gray-200 px-5 min-h-screen">
+        <div className="py-10 bg-white px-5 min-h-screen">
         <h2 className="text-3xl pb-10 text-center font-bold text-[#008575]">
           Books: {category}
         </h2>

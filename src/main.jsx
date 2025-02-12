@@ -16,6 +16,7 @@ import UpdateBook from "./components/UpdateBook/UpdateBook";
 import Category from "./components/Category/Category";
 import ViewDetails from "./components/ViewDetails/ViewDetails";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement: <Error></Error>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

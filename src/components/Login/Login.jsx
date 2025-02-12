@@ -40,11 +40,11 @@ const Login = () => {
         <form onSubmit={handleLogin} className="space-y-5">
           <div className="form-control">
             <label className="label text-[#008575] text-lg">Email</label>
-            <input type="email" name="email" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Enter Your Email" />
+            <input type="email" defaultValue={'imran123@imran.com'} name="email" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Enter Your Email" />
           </div>
           <div className="form-control">
             <label className="label text-[#008575] text-lg">Password</label>
-            <input type="password" name="password" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Password" />
+            <input type="password" defaultValue={'Imran123'} name="password" required className="input input-bordered w-full p-3 focus:ring-1 focus:ring-[#008575]" placeholder="Password" />
           </div>
           <button type="submit" className="w-full bg-[#008575] text-white text-lg font-semibold py-2 rounded-md hover:bg-white hover:text-[#008575] border border-[#008575] transition">Log In</button>
         </form>

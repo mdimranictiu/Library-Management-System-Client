@@ -90,7 +90,7 @@ const UpdateBook = () => {
   };
   if(isloading){
     return(
-      <div className="items-center text-center py-16">
+      <div className="items-center min-h-screen  text-center py-16">
 <span className="loading loading-lg loading-ring text-primary"></span>
 <span className="loading loading-lg loading-ring text-secondary"></span>
 <span className="loading loading-lg loading-ring text-accent"></span>
@@ -108,10 +108,10 @@ const UpdateBook = () => {
       <h2 className="text-3xl py-10  text-center font-bold text-[#008575]">
         Update Book
       </h2>
-        {isupdating && 
+        {/* {isupdating && 
         
         (
-          <div className="items-center text-center py-16">
+          <div className="items-center text-center min-h-screen py-16">
           <span className="loading loading-lg loading-ring text-primary"></span>
           <span className="loading loading-lg loading-ring text-secondary"></span>
           <span className="loading loading-lg loading-ring text-accent"></span>
@@ -123,7 +123,7 @@ const UpdateBook = () => {
           </div>
         )
         
-        }  
+        }   */}
           
           
           <div className="w-4/5 max-sm:w-full mx-auto p-10 rounded-xl shadow-2xl">
