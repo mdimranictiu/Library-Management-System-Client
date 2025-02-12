@@ -104,11 +104,11 @@ const UpdateBook = () => {
   }
 
     return (
-        <div className="py-10 min-h-screen">
+        <div className="py-20 min-h-screen">
       <h2 className="text-3xl py-10  text-center font-bold text-[#008575]">
         Update Book
       </h2>
-        {/* {isupdating && 
+        {isupdating && 
         
         (
           <div className="items-center text-center min-h-screen py-16">
@@ -123,7 +123,7 @@ const UpdateBook = () => {
           </div>
         )
         
-        }   */}
+        }  
           
           
           <div className="w-4/5 max-sm:w-full mx-auto p-10 rounded-xl shadow-2xl">

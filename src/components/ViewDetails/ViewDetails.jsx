@@ -116,14 +116,21 @@ const ViewDetails = () => {
   if (isLoading) {
     return (
       <div className="items-center text-center py-16 min-h-screen">
-        <span className="loading loading-lg loading-ring text-primary"></span>
-      </div>
+      <span className="loading loading-lg loading-ring text-primary"></span>
+      <span className="loading loading-lg loading-ring text-secondary"></span>
+      <span className="loading loading-lg loading-ring text-accent"></span>
+      <span className="loading loading-lg loading-ring text-neutral"></span>
+      <span className="loading loading-lg loading-ring text-info"></span>
+      <span className="loading loading-lg loading-ring text-success"></span>
+      <span className="loading loading-lg loading-ring text-warning"></span>
+      <span className="loading loading-lg loading-ring text-error"></span>
+    </div>
     );
   }
 
   return (
     <>
-      <div className="card bg-white w-4/5 max-md:w-full max-sm:w-full my-5 mx-auto shadow-xl">
+      <div className="card py-20 w-4/5 max-md:w-full max-sm:w-full my-5 mx-auto shadow-xl">
         <div className="card-body">
           <h3 className="text-2xl font-bold text-center py-5">Book Information</h3>
           <div className="w-1/5 bg-[#89dfd5] rounded-lg max-md:w-3/5 max-sm:w-full mx-auto min-h-[220px]">

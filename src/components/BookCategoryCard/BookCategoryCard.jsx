@@ -15,7 +15,7 @@ const BookCategoryCard = ({ book }) => {
   return (
     <div className="card card-compact bg-white shadow-xl flex flex-col justify-between">
       <div className="card-body flex-grow">
-        <div className='h-[280px] w-full  mx-auto rounded-lg my-5'>
+        <div className='h-[280px] max-w-[250px] mx-auto rounded-lg my-5'>
           <img src={bookImageUrl} alt="Book" className='w-full h-full  rounded-lg' />
         </div>
 
