@@ -27,11 +27,11 @@ const NewArrival = () => {
  
 
     return (
-        <div className="py-5">
+        <div  className="py-5">
             <h2 className="text-3xl py-5 font-bold text-center text-[#008575]">
                 New Arrival Books 
             </h2>
-            <div className='my-16'>
+            <div className='p-10'>
             <Slider
             width="400px"
             duration={50}

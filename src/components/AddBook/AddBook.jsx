@@ -67,7 +67,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="py-20">
       <h2 className="text-3xl py-5 text-center font-bold text-[#008575]">
         Add Book
       </h2>

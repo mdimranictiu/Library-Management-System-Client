@@ -10,7 +10,7 @@ const Home = () => {
         <div className='py-10'>
             <Slider></Slider>
             <Categories></Categories>
-            <NewArrival></NewArrival>
+            <NewArrival ></NewArrival>
             <LibraryStats></LibraryStats>
            
         </div>

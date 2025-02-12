@@ -24,7 +24,7 @@ const BorrowedBooks = () => {
   }, [email]);
 
   return (
-    <div className="py-10 min-h-screen">
+    <div className="py-20 min-h-screen">
       <h2 className="text-3xl pb-10 text-center font-bold text-[#008575]">
         My Borrowed Books
       </h2>

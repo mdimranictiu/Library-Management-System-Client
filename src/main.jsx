@@ -17,6 +17,12 @@ import Category from "./components/Category/Category";
 import ViewDetails from "./components/ViewDetails/ViewDetails";
 import BorrowedBooks from "./components/BorrowedBooks/BorrowedBooks";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import ContactUs from "./components/ContactUs/ContactUs";
+import HelpCenter from "./components/HelpCenter/HelpCenter";
+import SuggestBook from "./components/SuggestBook/SuggestBook";
+import FeedBack from "./components/FeedBack/FeedBack";
+import ReportIssue from "./components/ReportIssue/ReportIssue";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 
 
 
@@ -30,6 +36,30 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>
+      },
+      {
+        path: "/help-center",
+        element: <HelpCenter></HelpCenter>
+      },
+      {
+        path: "/feedback",
+        element: <FeedBack></FeedBack>
+      },
+      {
+        path: "/report",
+        element: <ReportIssue></ReportIssue>
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyPolicy></PrivacyPolicy>
+      },
+      {
+        path: "/suggest-book",
+        element: <PrivateRouter><SuggestBook></SuggestBook></PrivateRouter>
       },
       {
         path : "/login",

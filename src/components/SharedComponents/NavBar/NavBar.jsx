@@ -47,6 +47,9 @@ const NavBar = () => {
       <li onClick={() => setMenuOpen(false)}>
         <Link to="/books">All Books</Link>
       </li>
+      <li className={user?"hidden":"block"} onClick={() => setMenuOpen(false)}>
+        <Link to="/contact-us">Contact Us</Link>
+      </li>
       {user && (
         <>
           <li onClick={() => setMenuOpen(false)}>
@@ -55,6 +58,9 @@ const NavBar = () => {
           <li onClick={() => setMenuOpen(false)}>
             <Link to="/borrowed-books">Borrowed Books</Link>
           </li>
+          <li className={!user?"hidden":"block"} onClick={() => setMenuOpen(false)}>
+        <Link to="/contact-us">Contact Us</Link>
+      </li>
         </>
       )}
     </>
@@ -77,7 +83,7 @@ const NavBar = () => {
           <ToggleTheme />
 
           {user ? (
-            <button onClick={handleSignOut} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+            <button onClick={handleSignOut} className="px-4 py-2 max-sm:hidden bg-red-500 text-white rounded hover:bg-red-600 transition">
               Log out
             </button>
           ) : (

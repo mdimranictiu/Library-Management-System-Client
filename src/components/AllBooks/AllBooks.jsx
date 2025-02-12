@@ -123,7 +123,7 @@ const AllBooks = () => {
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50"
+            className={`px-4 py-2 text-white rounded-lg disabled:opacity-50 ${currentPage === 1 ? 'bg-gray-300':'bg-[#008575]'}`}
           >
             Previous
           </button>
@@ -133,7 +133,7 @@ const AllBooks = () => {
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-[#008575] text-white rounded-lg disabled:opacity-50"
+            className={`px-4 py-2 text-white rounded-lg disabled:opacity-50 ${currentPage === totalPages ? 'bg-gray-300':'bg-[#008575]'}`}
           >
             Next
           </button>

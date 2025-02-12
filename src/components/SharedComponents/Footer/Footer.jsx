@@ -19,25 +19,24 @@ const Footer = () => {
                         <div>
                             <h3 className='text-2xl font-semibold'>General Information</h3>
                             <ul className='mt-4 flex flex-col gap-3 text-[16px] font-semibold'>
-                                <li><Link>About Us</Link></li>
-                                <li><Link>Contact Us</Link></li>
-                                <li><Link>Privacy Policy</Link></li>
+                                <li><Link to='/contact-us'>Contact Us</Link></li>
+                                <li><Link to='/privacy'>Privacy Policy</Link></li>
                             </ul>
                         </div>
                         <div>
                             <h3 className='text-2xl font-semibold'>Library Services</h3>
                             <ul className='mt-4 flex flex-col gap-3 font-semibold text-[16px]'>
-                                <li><Link>Catalog Search</Link></li>
-                                <li><Link>New Arrivals</Link></li>
-                                <li><Link>Digital Library</Link></li>
+                            <li><Link to='/books'>Find Books</Link></li>
+
+                                <li><Link to='/suggest-book'>Suggest A Book</Link></li>
                             </ul>
                         </div>
                         <div>
                             <h3 className='text-2xl font-semibold'>User Support</h3>
                             <ul className='mt-4 flex flex-col gap-3 font-semibold text-[16px]'>
-                                <li><Link>Help Center</Link></li>
-                                <li><Link>Report an Issue</Link></li>
-                                <li><Link>FAQ</Link></li>
+                                <li><Link to='/help-center'>Help Center</Link></li>
+                                <li><Link to='/report'>Report an Issue</Link></li>
+                                <li><Link to='/feedback'>Feedback</Link></li>
                             </ul>
                         </div>
                     </div>
