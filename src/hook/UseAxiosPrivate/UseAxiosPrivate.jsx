@@ -4,7 +4,9 @@ import { AuthContext } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const axiosPrivate = axios.create({
-    baseURL: "http://localhost:3000/",
+    // baseURL: 'https://library-management-system-server-ten.vercel.app/'
+    baseURL: 'http://localhost:3000/'
+
 });
 
 const UseAxiosPrivate = () => {
